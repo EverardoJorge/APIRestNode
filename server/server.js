@@ -11,7 +11,9 @@ app.use(bodyParser.json())
 
  
 app.get('/', (req, res) => {
-  res.json('Hello World')
+  res.json({
+    mensaje : 'Hello World'
+  })
 });
 
 app.get('/user', (req, res) => {
