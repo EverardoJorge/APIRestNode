@@ -14,9 +14,31 @@
 
   process.env.NODE_ENV = process.env.NODE_ENV || 'dev';
 
+
+  /**
+   * 
+   * EXPIRATION TOKEN 
+   * 60 SEC.
+   * 60 MIN.
+   * 24 HRS.
+   * 30 DAYS
+   * 
+   */
+
+   process.env.EXPIRATION_TOKEN = 60 * 60 * 24 * 30;
+
+
+   /**
+    * 
+    * SEED SECRET
+    * 
+    */
+
+    process.env.SECRET_SEED = 'Super-secret';
+    
   /***
    * 
-   * DATABASE UPDATE FAKE
+   * DATABASE
    * 
    */
   
