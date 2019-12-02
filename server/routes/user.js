@@ -8,7 +8,7 @@ const { verifyToken, verifyAdminRol } = require('../middleware/authentication');
 
 app.get('/', (req, res) => {
   res.json({
-    mensaje: 'Hello World'
+    mensaje: 'New Hello World'
   })
 });
 
