@@ -1,47 +1,47 @@
 const mongoose = require('mongoose');
-const uniqueValidator = require ('mongoose-unique-validator');
+const uniqueValidator = require('mongoose-unique-validator');
 
 let Schema = mongoose.Schema;
 
 let roleValited = {
-    values : ['ADMIN_ROLE', 'USER_ROLE'],
-    message : '#####{VALUE} ROL INVALITED########'
+    values: ['ADMIN_ROLE', 'USER_ROLE'],
+    message: '#####{VALUE} ROL INVALITED########'
 }
 
-let userSchema = new Schema ({
-    name : {
-        type : String,
-        required : [true, 'Required Name Please']
-    }, 
-    email : {
-        type : String,
-        unique : true,
-        required : [true, 'Required Email']
+let userSchema = new Schema({
+    name: {
+        type: String,
+        required: [true, 'Required Name Please']
     },
-    password : {
-        type : String,
-        required : [true, 'The password in requerited']
+    email: {
+        type: String,
+        unique: true,
+        required: [true, 'Required Email']
     },
-    img : {
-        type : String,
-        required : false
+    password: {
+        type: String,
+        required: [true, 'The password in requerited']
     },
-    role : {
-        type : String,
-        default : 'USER_ROLE',
-        enum : roleValited
+    img: {
+        type: String,
+        required: false
     },
-    status : {
-        type : Boolean,
-        default : true
+    role: {
+        type: String,
+        default: 'USER_ROLE',
+        enum: roleValited
     },
-    google : {
-        type : Boolean,
-        default : false
+    status: {
+        type: Boolean,
+        default: true
+    },
+    google: {
+        type: Boolean,
+        default: false
     }
 });
 
-userSchema.methods.toJSON = function () {
+userSchema.methods.toJSON = function() {
     let user = this;
     let userObject = user.toObject();
     delete userObject.password;
@@ -49,6 +49,6 @@ userSchema.methods.toJSON = function () {
     return userObject;
 };
 
-userSchema.plugin(uniqueValidator, {message : '{PATH} sould to unique'});
+userSchema.plugin(uniqueValidator, { message: '{PATH} sould to unique' });
 
 module.exports = mongoose.model('User', userSchema);

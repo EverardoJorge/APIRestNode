@@ -6,11 +6,7 @@ const User = require('../models/user');
 const { verifyToken, verifyAdminRol } = require('../middleware/authentication'); //import middlleware only the function
 
 
-app.get('/', (req, res) => {
-  res.json({
-    mensaje: 'New Hello World'
-  })
-});
+
 
 app.get('/user', verifyToken, (req, res) => {
 
