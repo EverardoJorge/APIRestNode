@@ -10,12 +10,10 @@ const jwt = require('jsonwebtoken')
 // ==================================
 
 let verifyToken = (req, res, next) => {
-    
     //get to header
-    let authorization  = req.get('authorization');
+    let authorization = req.get('authorization');
 
-    jwt.verify( authorization,  process.env.SECRET_SEED, (err, decoded) => {
-        
+    jwt.verify(authorization, process.env.SECRET_SEED, (err, decoded) => {
         if (err) {
             return res.status(401).json({
                 ok: false,
@@ -32,22 +30,22 @@ let verifyToken = (req, res, next) => {
 }
 
 // ==================================
-// VERIFY TOKEN
+// VERIFY ROLE
 // ==================================
- let  verifyAdminRol = (req, res, next) => {
-     let user = req.user;
+let verifyAdminRol = (req, res, next) => {
+    let user = req.user;
 
-     if (user.role === 'USER_ROLE') {
-         return res.json({
-             ok: false,
-             err: {
-                 message: 'You are not ADMIN'
-             }
-         });
-     } else{
+    if (user.role === 'USER_ROLE') {
+        return res.json({
+            ok: false,
+            err: {
+                message: 'You are not ADMIN'
+            }
+        });
+    } else {
         next();
-     } 
- }
+    }
+}
 
 
 
