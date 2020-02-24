@@ -74,7 +74,7 @@ app.get('/product/:id_product', (req, res) => {
 // ==================================
 // SEARCH PRODUCTS BY COINCIDENCE
 // ==================================
-app.get('/products/search/:term', verifyToken, (req, res) => {
+app.get('/products/search/:term', (req, res) => {
     let term = req.params.term;
     let regexp = new RegExp(term, 'i');
     Product.find({ name: regexp })
@@ -109,7 +109,6 @@ app.post('/product', [verifyToken, verifyAdminRol], (req, res) => {
         name: body.name,
         unitPrice: body.unitPrice,
         description: body.description,
-        available: body.available,
         category: body.category,
         user: req.user._id
     })
