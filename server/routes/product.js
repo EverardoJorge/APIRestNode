@@ -109,6 +109,7 @@ app.post('/product', [verifyToken, verifyAdminRol], (req, res) => {
         name: body.name,
         unitPrice: body.unitPrice,
         description: body.description,
+        img: body.img,
         category: body.category,
         user: req.user._id
     })

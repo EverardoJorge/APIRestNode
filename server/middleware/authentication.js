@@ -47,11 +47,31 @@ let verifyAdminRol = (req, res, next) => {
     }
 }
 
+// ==================================
+// VERIFY TOKEN IMAGE
+// ==================================
+let veryfyTokeImg = (req, res, next) => {
+    let authorization = req.query.authorization;
+    jwt.verify(authorization, process.env.SECRET_SEED, (err, decoded) => {
+        if (err) {
+            return res.status(401).json({
+                ok: false,
+                err: {
+                    message: 'Token invalid'
+                }
+            });
+        }
+
+        req.user = decoded.user;
+        next()
+    });
+}
 
 
 
 
 module.exports = {
     verifyToken,
-    verifyAdminRol
+    verifyAdminRol,
+    veryfyTokeImg
 }
